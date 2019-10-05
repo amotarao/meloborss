@@ -9,7 +9,9 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-    - working-directory: ./functions
+    - name: Change Current Directory
+      run: |
+        cd ./functions
     - name: GitHub Action for Yarn
       uses: Borales/actions-yarn@1.1.0
       with:
