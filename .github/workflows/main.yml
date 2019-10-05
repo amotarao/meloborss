@@ -1,0 +1,23 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - working-directory: ./functions
+    - name: GitHub Action for Yarn
+      uses: Borales/actions-yarn@1.1.0
+      with:
+        args: install
+    - name: GitHub Action for Firebase
+      uses: w9jds/firebase-action@v1.1.0
+      with:
+        args: deploy --only functions
+      env:
+        PROJECT_ID: ${{ secrets.PROJECT_ID }}
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
