@@ -9,9 +9,12 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: Change Current Directory
-      run: |
-        cd ./functions
+    - uses: actions/checkout@master
+    - name: Setup Node.js for use with actions
+      uses: actions/setup-node@v1.1.0
+      with:
+        node-version: 10.x
+    - run: cd ./functions
     - name: GitHub Action for Yarn
       uses: Borales/actions-yarn@1.1.0
       with:
