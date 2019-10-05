@@ -1,8 +1,7 @@
 import * as functions from 'firebase-functions';
+import rssHandler from './handlers/rss';
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
+export const rss = functions
+  .region('asia-northeast1')
+  .runWith({ memory: '512MB', timeoutSeconds: 10 })
+  .https.onRequest(rssHandler);
