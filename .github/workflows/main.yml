@@ -18,7 +18,9 @@ jobs:
     - name: GitHub Action for Yarn
       uses: Borales/actions-yarn@1.1.0
       with:
-        args: install
+        args: |
+          install
+          global add tslint
     - run: cd ../
     - name: GitHub Action for Firebase
       uses: w9jds/firebase-action@v1.1.0
