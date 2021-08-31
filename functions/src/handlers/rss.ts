@@ -31,7 +31,7 @@ export default async function (req: functions.https.Request, resp: functions.Res
     const [, id, title] = allSubject.match(/\[(\d+)\] (.+)/)!;
     const [, y, m, d] = allDate.match(/(\d+)\/(\d+)\/(\d+)/)!;
     const [, h, min] = allDate.match(/(\d+):(\d+)/)!;
-    const body = allBody.replace(/\n$/, '').replace(/\n/g, '<br />');
+    const body = allBody.replace(/\n$/, '').replace(/\n/g, '<br />').replace(//g, ' ');
 
     const date = moment.tz(`20${y}-${`0${m}`.slice(-2)}-${`0${d}`.slice(-2)} ${`0${h}`.slice(-2)}:${min}`, 'Asia/Tokyo').format('ddd, DD MMM YYYY HH:mm:00 ZZ');
     const link = htmlspecialchars(`${url}?page=&no=${id}&mode=one&id=&cmd=jmp`);
