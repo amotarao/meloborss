@@ -2,9 +2,9 @@ import * as cheerio from "cheerio";
 import dayjs from "dayjs";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
-import { escapeHtmlSpecialCharacters } from "../../utils/html";
-import type { ItemInterface } from "../../utils/types";
-import { createItemsXml } from "../../utils/xml";
+import { escapeHtmlSpecialCharacters } from "../utils/html";
+import type { ItemInterface } from "../utils/types";
+import { createItemsXml } from "../utils/xml";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
