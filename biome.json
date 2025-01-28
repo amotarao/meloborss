@@ -4,7 +4,7 @@
     "ignore": [".next"]
   },
   "organizeImports": {
-    "enabled": false
+    "enabled": true
   },
   "formatter": {
     "enabled": true,
