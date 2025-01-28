@@ -3,7 +3,7 @@ import * as cheerio from 'cheerio';
 import * as encoding from 'encoding-japanese';
 import * as moment from 'moment-timezone';
 import fetch from 'node-fetch';
-import { htmlspecialchars } from '../utils/html';
+import { escapeHtmlSpecialCharacters } from '../utils/html';
 import { createItemsXml } from '../utils/xml';
 
 const url = 'http://hassya.net/melobo/bbs.cgi';
@@ -34,10 +34,10 @@ export default async function (req: functions.https.Request, resp: functions.Res
     const body = allBody.replace(/\n$/, '').replace(/\n/g, '<br />').replace(//g, ' ');
 
     const date = moment.tz(`20${y}-${`0${m}`.slice(-2)}-${`0${d}`.slice(-2)} ${`0${h}`.slice(-2)}:${min}`, 'Asia/Tokyo').format('ddd, DD MMM YYYY HH:mm:00 ZZ');
-    const link = htmlspecialchars(`${url}?page=&no=${id}&mode=one&id=&cmd=jmp`);
+    const link = escapeHtmlSpecialCharacters(`${url}?page=&no=${id}&mode=one&id=&cmd=jmp`);
 
     const item: ItemInterface = {
-      title,
+      title: `<![CDATA[${title}]]>`,
       link,
       description: `<![CDATA[${body}]]>`,
       pubDate: date.toString(),
@@ -51,7 +51,7 @@ export default async function (req: functions.https.Request, resp: functions.Res
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>めろでぃ～ぼーど 更新情報</title>
-    <link>${htmlspecialchars(url)}</link>
+    <link>${escapeHtmlSpecialCharacters(url)}</link>
     <description>めろでぃ～ぼーど：新着10件</description>
     <language>ja</language>
     <atom:link href="https://asia-northeast1-meloborss.cloudfunctions.net/rss" rel="self" type="application/rss+xml" />
