@@ -1,7 +1,12 @@
 import * as cheerio from "cheerio";
-import * as moment from "moment-timezone";
+import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
 import { escapeHtmlSpecialCharacters } from "../utils/html";
 import { createItemsXml } from "../utils/xml";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 const url = "http://hassya.net/melobo/bbs.cgi";
 
@@ -37,11 +42,12 @@ export async function GET(request: Request): Promise<Response> {
         // biome-ignore lint: わからんけど昔からあったから必要なんでしょう
         .replace(//g, " ");
 
-      const date = moment
+      const date = dayjs
         .tz(
-          `20${y}-${`0${m}`.slice(-2)}-${`0${d}`.slice(-2)} ${`0${h}`.slice(-2)}:${min}`,
+          `${y}-${`0${m}`.slice(-2)}-${`0${d}`.slice(-2)} ${`0${h}`.slice(-2)}:${min}`,
           "Asia/Tokyo",
         )
+        .tz("Asia/Tokyo")
         .format("ddd, DD MMM YYYY HH:mm:00 ZZ");
       const link = escapeHtmlSpecialCharacters(
         `${url}?page=&no=${id}&mode=one&id=&cmd=jmp`,

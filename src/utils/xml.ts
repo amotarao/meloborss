@@ -1,6 +1,5 @@
 import type { ItemInterface } from "../app/route";
 
-
 export function createItemsObj(item: ItemInterface): string {
   const keys = Object.keys(item);
   const values = Object.values(item);
