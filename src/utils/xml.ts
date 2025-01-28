@@ -1,4 +1,4 @@
-import type { ItemInterface } from "../app/route";
+import type { ItemInterface } from "./types";
 
 export function createItemsObj(item: ItemInterface): string {
   const keys = Object.keys(item);
