@@ -20,7 +20,7 @@ export interface ItemInterface {
   guid: string;
 }
 
-export async function GET(request: Request): Promise<Response> {
+export async function GET(): Promise<Response> {
   const res = await fetch(url, { method: "GET" });
   const arrayBuffer = await res.arrayBuffer();
   const html = textDecoder.decode(arrayBuffer);

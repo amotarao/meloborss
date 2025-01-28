@@ -5,6 +5,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "lint": "next lint",
     "check": "biome check --write . "
   },
   "license": "UNLICENSED",
@@ -19,6 +20,8 @@
     "@biomejs/biome": "1.9.4",
     "@types/react": "19.0.8",
     "@types/react-dom": "^19.0.3",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.6",
     "typescript": "^5.7.3"
   }
 }
