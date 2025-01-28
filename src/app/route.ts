@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
 import { escapeHtmlSpecialCharacters } from "../utils/html";
+import type { ItemInterface } from "../utils/types";
 import { createItemsXml } from "../utils/xml";
 
 dayjs.extend(utc);
@@ -11,14 +12,6 @@ dayjs.extend(timezone);
 const url = "http://hassya.net/melobo/bbs.cgi";
 
 const textDecoder = new TextDecoder("shift-jis");
-
-export interface ItemInterface {
-  title: string;
-  link: string;
-  description: string;
-  pubDate: string;
-  guid: string;
-}
 
 export async function GET(): Promise<Response> {
   const res = await fetch(url, { method: "GET" });
