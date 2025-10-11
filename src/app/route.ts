@@ -35,13 +35,17 @@ export async function GET(): Promise<Response> {
         // biome-ignore lint: わからんけど昔からあったから必要なんでしょう
         .replace(//g, " ");
 
-      const date = dayjs
-        .tz(
-          `${y}-${`0${m}`.slice(-2)}-${`0${d}`.slice(-2)} ${`0${h}`.slice(-2)}:${min}`,
-          "Asia/Tokyo",
-        )
-        .tz("Asia/Tokyo")
-        .format("ddd, DD MMM YYYY HH:mm:00 ZZ");
+      const pubDate =
+        y && m && d
+          ? dayjs
+              .tz(
+                `${y}-${`0${m}`.slice(-2)}-${`0${d}`.slice(-2)} ${`0${h}`.slice(-2)}:${min}`,
+                "Asia/Tokyo",
+              )
+              .tz("Asia/Tokyo")
+              .format("ddd, DD MMM YYYY HH:mm:00 ZZ")
+              .toString()
+          : "";
       const link = escapeHtmlSpecialCharacters(
         `${url}?page=&no=${id}&mode=one&id=&cmd=jmp`,
       );
@@ -50,7 +54,7 @@ export async function GET(): Promise<Response> {
         title: `<![CDATA[${title}]]>`,
         link,
         description: `<![CDATA[${body}]]>`,
-        pubDate: date.toString(),
+        pubDate,
         guid: link,
       };
 
