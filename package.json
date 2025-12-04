@@ -12,7 +12,7 @@
   "dependencies": {
     "cheerio": "^1.1.2",
     "dayjs": "^1.11.13",
-    "next": "^15.4.8",
+    "next": "^16.0.7",
     "react": "^19.2.1",
     "react-dom": "^19.2.1"
   },
@@ -22,7 +22,7 @@
     "@types/react": "19.2.7",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.1",
-    "eslint-config-next": "15.4.6",
+    "eslint-config-next": "16.0.7",
     "typescript": "^5.9.3"
   },
   "volta": {
