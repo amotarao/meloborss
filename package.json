@@ -10,7 +10,7 @@
   },
   "license": "UNLICENSED",
   "dependencies": {
-    "cheerio": "^1.1.2",
+    "cheerio": "^1.2.0",
     "dayjs": "^1.11.19",
     "next": "^16.0.10",
     "react": "^19.2.1",
